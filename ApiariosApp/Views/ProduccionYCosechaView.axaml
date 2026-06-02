@@ -1,0 +1,219 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ApiariosApp.Views"
+             x:Class="ApiariosApp.Views.ProduccionYCosechaView"
+             x:DataType="local:ProduccionYCosechaView"
+             Background="#F5F6F8"
+             FontFamily="Inter, Arial, sans-serif">
+
+  <UserControl.Resources>
+    <SolidColorBrush x:Key="AccentColor">#D98E04</SolidColorBrush>
+  </UserControl.Resources>
+
+  <Grid RowDefinitions="Auto, *">
+    <!-- Title & Subtitle -->
+    <Grid Grid.Row="0" Margin="30,10,30,20" ColumnDefinitions="*, Auto">
+      <StackPanel Grid.Column="0">
+        <TextBlock Text="Producción y Cosecha" FontSize="26" FontWeight="Bold" Foreground="#1A202C"/>
+        <TextBlock Text="Gestiona la extracción de miel y traza el origen botánico por colmena." FontSize="14" Foreground="#718096" Margin="0,5,0,0"/>
+      </StackPanel>
+      
+      <Border Grid.Column="1" Background="White" CornerRadius="16" Padding="12,6" VerticalAlignment="Top" BorderBrush="#E2E8F0" BorderThickness="1">
+        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+          <Ellipse Width="8" Height="8" Fill="#48BB78"/>
+          <TextBlock Text="Temporada Actual: " FontSize="12" Foreground="#4A5568"/>
+          <TextBlock Text="Otoño 2024" FontSize="12" FontWeight="Bold" Foreground="#9C6026"/>
+        </StackPanel>
+      </Border>
+    </Grid>
+
+    <!-- Dashboard Content -->
+    <ScrollViewer Grid.Row="1" Margin="30,0,30,20">
+      <StackPanel Spacing="20">
+        
+        <!-- Top Row Cards -->
+        <Grid ColumnDefinitions="360, 20, *">
+          
+          <!-- Left Card: Nuevo Barril -->
+          <Border Grid.Column="0" Background="White" CornerRadius="12" Padding="24" BoxShadow="0 4 10 0 #08000000">
+            <StackPanel Spacing="16">
+              
+              <StackPanel Orientation="Horizontal" Spacing="10">
+                <Border Background="#FFF4E6" CornerRadius="6" Width="32" Height="32">
+                  <PathIcon Data="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" Foreground="{StaticResource AccentColor}" Width="16" Height="16"/>
+                </Border>
+                <TextBlock Text="Nuevo Barril (300kg)" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Foreground="#1A202C"/>
+              </StackPanel>
+              
+              <!-- Colmena Select -->
+              <StackPanel Spacing="6">
+                <Grid>
+                  <TextBlock Text="Colmena de Origen" FontSize="12" FontWeight="SemiBold" Foreground="#4A5568"/>
+                  <TextBlock Text="*" Foreground="#E53E3E" HorizontalAlignment="Right" FontSize="12"/>
+                </Grid>
+                <ComboBox SelectedIndex="0" HorizontalAlignment="Stretch" BorderBrush="#E2E8F0" CornerRadius="6">
+                  <ComboBoxItem Content="Seleccionar colmena para trazar..."/>
+                </ComboBox>
+                <TextBlock Text="Requerido para certificación orgánica." FontSize="11" Foreground="#A0AEC0"/>
+              </StackPanel>
+
+              <Grid ColumnDefinitions="*, 16, *">
+                <!-- Fecha Extraccion -->
+                <StackPanel Grid.Column="0" Spacing="6">
+                  <TextBlock Text="Fecha de Extracción" FontSize="12" FontWeight="SemiBold" Foreground="#4A5568"/>
+                  <CalendarDatePicker HorizontalAlignment="Stretch" BorderBrush="#E2E8F0" CornerRadius="6"/>
+                </StackPanel>
+                <!-- ID Lote Generado -->
+                <StackPanel Grid.Column="2" Spacing="6">
+                  <TextBlock Text="ID Lote Generado" FontSize="12" FontWeight="SemiBold" Foreground="#4A5568"/>
+                  <TextBox Text="L-24-108A" IsReadOnly="True" Background="#F4F6F8" BorderBrush="#E2E8F0" CornerRadius="6" Foreground="#4A5568"/>
+                </StackPanel>
+              </Grid>
+
+              <!-- Notas -->
+              <StackPanel Spacing="6">
+                <TextBlock Text="Notas Sensoriales / Observaciones" FontSize="12" FontWeight="SemiBold" Foreground="#4A5568"/>
+                <TextBox Height="80" TextWrapping="Wrap" AcceptsReturn="True" PlaceholderText="Ej. Color ámbar claro, alta viscosidad..." BorderBrush="#E2E8F0" CornerRadius="6"/>
+              </StackPanel>
+
+              <!-- Button -->
+              <Button Background="#F6A820" CornerRadius="6" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Padding="0,12" Margin="0,10,0,0">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <PathIcon Data="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 13.17l7.59-7.59L19 7l-9 9z" Foreground="White" Width="14" Height="14"/>
+                  <TextBlock Text="Registrar Barril en Inventario" Foreground="White" FontWeight="Bold" FontSize="13"/>
+                </StackPanel>
+              </Button>
+            </StackPanel>
+          </Border>
+
+          <!-- Right Card: Chart -->
+          <Border Grid.Column="2" Background="White" CornerRadius="12" Padding="24" BoxShadow="0 4 10 0 #08000000">
+            <Grid RowDefinitions="Auto, *">
+              <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                <StackPanel>
+                  <TextBlock Text="Rendimiento por Temporada" FontSize="18" FontWeight="Bold" Foreground="#1A202C"/>
+                  <TextBlock Text="Comparativa de volumen extraído (Kg) en Apiario Principal." FontSize="13" Foreground="#718096" Margin="0,4,0,0"/>
+                </StackPanel>
+                <PathIcon Grid.Column="1" Data="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" Foreground="#A0AEC0" Width="16" Height="16"/>
+              </Grid>
+              
+              <!-- Chart Mockup -->
+              <Grid Grid.Row="1" Margin="0,20,0,0" RowDefinitions="*, *, *, *, Auto" ColumnDefinitions="30, *">
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="4k" FontSize="11" Foreground="#A0AEC0" VerticalAlignment="Top"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="3k" FontSize="11" Foreground="#A0AEC0" VerticalAlignment="Top"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="2k" FontSize="11" Foreground="#A0AEC0" VerticalAlignment="Top"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="1k" FontSize="11" Foreground="#A0AEC0" VerticalAlignment="Top"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="0" FontSize="11" Foreground="#A0AEC0" VerticalAlignment="Bottom" Margin="0,0,0,10"/>
+
+                <!-- Grid lines -->
+                <Border Grid.Row="0" Grid.Column="1" BorderBrush="#F0F2F5" BorderThickness="0,1,0,0" VerticalAlignment="Top"/>
+                <Border Grid.Row="1" Grid.Column="1" BorderBrush="#F0F2F5" BorderThickness="0,1,0,0" VerticalAlignment="Top"/>
+                <Border Grid.Row="2" Grid.Column="1" BorderBrush="#F0F2F5" BorderThickness="0,1,0,0" VerticalAlignment="Top"/>
+                <Border Grid.Row="3" Grid.Column="1" BorderBrush="#F0F2F5" BorderThickness="0,1,0,0" VerticalAlignment="Top"/>
+                <Border Grid.Row="4" Grid.Column="1" BorderBrush="#F0F2F5" BorderThickness="0,1,0,0" VerticalAlignment="Bottom" Margin="0,0,0,10"/>
+                
+                <Grid Grid.Row="4" Grid.Column="1" ColumnDefinitions="*, *, *, *" Margin="0,10,0,0" VerticalAlignment="Bottom">
+                  <TextBlock Grid.Column="0" Text="Pri '23" FontSize="11" Foreground="#A0AEC0" HorizontalAlignment="Center"/>
+                  <TextBlock Grid.Column="1" Text="Ver '23" FontSize="11" Foreground="#A0AEC0" HorizontalAlignment="Center"/>
+                  <TextBlock Grid.Column="2" Text="Oto '23" FontSize="11" Foreground="#A0AEC0" HorizontalAlignment="Center"/>
+                  <TextBlock Grid.Column="3" Text="Pri '24" FontSize="11" FontWeight="Bold" Foreground="#9C6026" HorizontalAlignment="Center"/>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Border>
+        </Grid>
+
+        <!-- Bottom Card: Table -->
+        <Border Background="White" CornerRadius="12" Padding="24" BoxShadow="0 4 10 0 #08000000">
+          <StackPanel Spacing="20">
+            
+            <Grid ColumnDefinitions="*, Auto, Auto">
+              <TextBlock Grid.Column="0" Text="Histórico de Cosechas" FontSize="18" FontWeight="Bold" Foreground="#1A202C"/>
+              <Button Grid.Column="1" Background="White" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="6" Padding="12,6" Margin="0,0,10,0">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                  <PathIcon Data="M3 4c0-.55.45-1 1-1h16c.55 0 1 .45 1 1v2.59c0 .27-.11.52-.29.71L15 13.17V19c0 .38-.22.72-.56.89l-4 2c-.34.17-.74.14-1.05-.08C9.09 21.6 9 21.31 9 21v-7.83L3.29 7.29C3.11 7.11 3 6.86 3 6.59V4z" Width="14" Height="14" Foreground="#4A5568"/>
+                  <TextBlock Text="Filtrar" FontSize="13" Foreground="#4A5568"/>
+                </StackPanel>
+              </Button>
+              <Button Grid.Column="2" Background="White" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="6" Padding="12,6">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                  <PathIcon Data="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" Width="14" Height="14" Foreground="#4A5568"/>
+                  <TextBlock Text="Exportar CSV" FontSize="13" Foreground="#4A5568"/>
+                </StackPanel>
+              </Button>
+            </Grid>
+
+            <DataGrid ItemsSource="{Binding HistorialCosechas}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="True" HeadersVisibility="Column" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#F0F2F5" RowBackground="White" BorderThickness="0" Background="White" MinHeight="250">
+              <DataGrid.Styles>
+                <Style Selector="DataGridColumnHeader">
+                  <Setter Property="Background" Value="Transparent"/>
+                  <Setter Property="Foreground" Value="#A0AEC0"/>
+                  <Setter Property="FontWeight" Value="SemiBold"/>
+                  <Setter Property="FontSize" Value="12"/>
+                  <Setter Property="Padding" Value="10,12"/>
+                </Style>
+                <Style Selector="DataGridCell">
+                  <Setter Property="Padding" Value="10,16"/>
+                  <Setter Property="FontSize" Value="13"/>
+                  <Setter Property="Foreground" Value="#4A5568"/>
+                </Style>
+              </DataGrid.Styles>
+              
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="Lote ID" Binding="{Binding LoteId}" FontWeight="Bold" Foreground="#1A202C"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}"/>
+                
+                <DataGridTemplateColumn Header="Colmena Origen">
+                  <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate x:DataType="local:CosechaItem">
+                      <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                        <Ellipse Width="6" Height="6" Fill="{Binding StatusColor}"/>
+                        <TextBlock Text="{Binding Colmena}" VerticalAlignment="Center"/>
+                      </StackPanel>
+                    </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Peso Neto">
+                  <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate x:DataType="local:CosechaItem">
+                      <TextBlock Text="{Binding PesoNeto}" VerticalAlignment="Center" Foreground="{Binding PesoColor}"/>
+                    </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Perfil Botánico" Binding="{Binding PerfilBotanico}"/>
+                
+                <DataGridTemplateColumn Header="Estado">
+                  <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate x:DataType="local:CosechaItem">
+                      <Border Background="{Binding EstadoBgColor}" CornerRadius="4" Padding="8,4" HorizontalAlignment="Left">
+                        <TextBlock Text="{Binding Estado}" FontSize="11" Foreground="{Binding EstadoTextColor}"/>
+                      </Border>
+                    </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+              </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Pagination Info -->
+            <Grid ColumnDefinitions="*, Auto">
+              <TextBlock Text="0 registros" FontSize="13" Foreground="#718096" VerticalAlignment="Center"/>
+              <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10">
+                <Button Background="Transparent" BorderThickness="0" Padding="8">
+                  <PathIcon Data="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" Width="14" Height="14" Foreground="#A0AEC0"/>
+                </Button>
+                <Button Background="Transparent" BorderThickness="0" Padding="8">
+                  <PathIcon Data="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" Width="14" Height="14" Foreground="#4A5568"/>
+                </Button>
+              </StackPanel>
+            </Grid>
+
+          </StackPanel>
+        </Border>
+        
+      </StackPanel>
+    </ScrollViewer>
+    
+  </Grid>
+</UserControl>

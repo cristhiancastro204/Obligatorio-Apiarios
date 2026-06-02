@@ -1,0 +1,142 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ApiariosApp"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+        Width="1200" Height="800"
+        x:Class="ApiariosApp.MainWindow"
+        x:DataType="local:MainWindow"
+        Background="#F9FAFB"
+        FontFamily="Inter, Arial, sans-serif"
+        Title="ApiariosApp - Zánganos S.A.">
+
+  <Window.Resources>
+    <SolidColorBrush x:Key="SidebarText">#4A5568</SolidColorBrush>
+    <SolidColorBrush x:Key="AccentYellow">#F6B100</SolidColorBrush>
+  </Window.Resources>
+
+  <Grid ColumnDefinitions="260, *">
+    
+    <!-- SIDEBAR -->
+    <Border Grid.Column="0" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="0,0,1,0">
+      <Grid RowDefinitions="Auto, Auto, *, Auto">
+        
+        <!-- Logo -->
+        <StackPanel Grid.Row="0" Margin="30,30,20,20">
+          <TextBlock Text="Zánganos S.A." FontWeight="Bold" FontSize="20" Foreground="#8B5A2B"/>
+          <TextBlock Text="Gestión Apícola" FontSize="12" Foreground="#718096" Margin="0,2,0,0"/>
+        </StackPanel>
+
+        <!-- Menu Items -->
+        <StackPanel Grid.Row="2" Spacing="2" Margin="0,10,0,0">
+          
+          <Button Name="BtnDashboard" Click="NavigateToPrincipal" Background="#F4F2EC" CornerRadius="0" HorizontalAlignment="Stretch" Padding="0">
+            <Grid ColumnDefinitions="*, Auto">
+              <StackPanel Orientation="Horizontal" Spacing="16" Margin="30,14">
+                <PathIcon Data="M3 3h8v8H3zm0 10h8v8H3zM13 3h8v8h-8zm0 10h8v8h-8z" Width="16" Height="16" Foreground="#8B5A2B"/>
+                <TextBlock Text="Panel Principal" FontWeight="Bold" VerticalAlignment="Center" Foreground="#8B5A2B" FontSize="13"/>
+              </StackPanel>
+              <Border Grid.Column="1" Width="4" Background="#8B5A2B" HorizontalAlignment="Right"/>
+            </Grid>
+          </Button>
+
+          <Button Name="BtnMisApiarios" Click="NavigateToMisApiarios" Background="Transparent" CornerRadius="0" HorizontalAlignment="Stretch" Padding="0">
+            <StackPanel Orientation="Horizontal" Spacing="16" Margin="30,14">
+              <PathIcon Data="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9zM12 4.15L6.04 7.5 12 10.85l5.96-3.35L12 4.15z" Width="16" Height="16" Foreground="{StaticResource SidebarText}"/>
+              <TextBlock Text="Mis Apiarios" VerticalAlignment="Center" Foreground="{StaticResource SidebarText}" FontSize="13" FontWeight="SemiBold"/>
+            </StackPanel>
+          </Button>
+
+          <Button Background="Transparent" CornerRadius="0" HorizontalAlignment="Stretch" Padding="0">
+            <StackPanel Orientation="Horizontal" Spacing="16" Margin="30,14">
+              <PathIcon Data="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" Width="16" Height="16" Foreground="{StaticResource SidebarText}"/>
+              <TextBlock Text="Inspecciones" VerticalAlignment="Center" Foreground="{StaticResource SidebarText}" FontSize="13" FontWeight="SemiBold"/>
+            </StackPanel>
+          </Button>
+
+          <Button Name="BtnProduccion" Click="NavigateToProduccion" Background="Transparent" CornerRadius="0" HorizontalAlignment="Stretch" Padding="0">
+            <StackPanel Orientation="Horizontal" Spacing="16" Margin="30,14">
+              <PathIcon Data="M12 2a4 4 0 0 0-4 4v2H6v12h12V8h-2V6a4 4 0 0 0-4-4zm0 2a2 2 0 0 1 2 2v2h-4V6a2 2 0 0 1 2-2z" Width="16" Height="16" Foreground="{StaticResource SidebarText}"/>
+              <TextBlock Text="Producción" VerticalAlignment="Center" Foreground="{StaticResource SidebarText}" FontSize="13" FontWeight="SemiBold"/>
+            </StackPanel>
+          </Button>
+
+          <Button Background="Transparent" CornerRadius="0" HorizontalAlignment="Stretch" Padding="0">
+            <StackPanel Orientation="Horizontal" Spacing="16" Margin="30,14">
+              <PathIcon Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" Width="16" Height="16" Foreground="{StaticResource SidebarText}"/>
+              <TextBlock Text="Sanidad" VerticalAlignment="Center" Foreground="{StaticResource SidebarText}" FontSize="13" FontWeight="SemiBold"/>
+            </StackPanel>
+          </Button>
+
+          <Button Background="Transparent" CornerRadius="0" HorizontalAlignment="Stretch" Padding="0">
+            <StackPanel Orientation="Horizontal" Spacing="16" Margin="30,14">
+              <PathIcon Data="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.06-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" Width="16" Height="16" Foreground="{StaticResource SidebarText}"/>
+              <TextBlock Text="Configuración" VerticalAlignment="Center" Foreground="{StaticResource SidebarText}" FontSize="13" FontWeight="SemiBold"/>
+            </StackPanel>
+          </Button>
+
+        </StackPanel>
+
+        <!-- Bottom Menu -->
+        <StackPanel Grid.Row="3" Spacing="2" Margin="0,0,0,30">
+          
+          <Button Background="{StaticResource AccentYellow}" CornerRadius="4" HorizontalAlignment="Stretch" Margin="20,0,20,20" Padding="0,12">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
+              <TextBlock Text="+" Foreground="#5C4033" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+              <TextBlock Text="Nueva Inspección" Foreground="#5C4033" FontWeight="Bold" FontSize="13" VerticalAlignment="Center"/>
+            </StackPanel>
+          </Button>
+
+          <Border BorderBrush="#F0F2F5" BorderThickness="0,1,0,0" Margin="20,10,20,10"/>
+          
+          <Button Background="Transparent" CornerRadius="0" HorizontalAlignment="Stretch" Padding="0">
+            <StackPanel Orientation="Horizontal" Spacing="16" Margin="30,14">
+              <PathIcon Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" Width="16" Height="16" Foreground="{StaticResource SidebarText}"/>
+              <TextBlock Text="Ayuda" VerticalAlignment="Center" Foreground="{StaticResource SidebarText}" FontSize="13" FontWeight="SemiBold"/>
+            </StackPanel>
+          </Button>
+
+          <Button Background="Transparent" CornerRadius="0" HorizontalAlignment="Stretch" Padding="0">
+            <StackPanel Orientation="Horizontal" Spacing="16" Margin="30,14">
+              <PathIcon Data="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" Width="16" Height="16" Foreground="{StaticResource SidebarText}"/>
+              <TextBlock Text="Cerrar Sesión" VerticalAlignment="Center" Foreground="{StaticResource SidebarText}" FontSize="13" FontWeight="SemiBold"/>
+            </StackPanel>
+          </Button>
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <!-- MAIN AREA -->
+    <Grid Grid.Column="1" RowDefinitions="Auto, *">
+      
+      <!-- Top Header Area -->
+      <Border Grid.Row="0" BorderBrush="#E2E8F0" BorderThickness="0,0,0,0">
+        <Grid ColumnDefinitions="*, Auto" Margin="30,20,30,10">
+          <!-- Search bar -->
+          <Border Grid.Column="0" Background="#F3F4F6" CornerRadius="4" Width="300" HorizontalAlignment="Left" Height="40">
+            <StackPanel Orientation="Horizontal" Margin="16,0">
+              <PathIcon Data="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" Width="16" Height="16" Foreground="#A0AEC0"/>
+              <TextBox Background="Transparent" BorderThickness="0" PlaceholderText="Buscar apiarios, colmenas..." VerticalAlignment="Center" Foreground="#4A5568" Width="250" Margin="8,0,0,0"/>
+            </StackPanel>
+          </Border>
+          
+          <!-- Header Icons -->
+          <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="24" VerticalAlignment="Center">
+            <PathIcon Data="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" Width="20" Height="20" Foreground="#4A5568"/>
+            <PathIcon Data="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8 8h-2v3h2v-3zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8zM12 5.5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z" Width="20" Height="20" Foreground="#4A5568"/>
+            <Grid>
+              <PathIcon Data="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" Width="20" Height="20" Foreground="#4A5568"/>
+              <Ellipse Fill="#E53E3E" Width="8" Height="8" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-2,-2,0"/>
+            </Grid>
+            <Ellipse Width="36" Height="36" Fill="#4299E1"/>
+          </StackPanel>
+        </Grid>
+      </Border>
+
+      <!-- Main Content Host -->
+      <ContentControl Name="MainContent" Grid.Row="1" Background="#F9FAFB" />
+      
+    </Grid>
+  </Grid>
+</Window>
